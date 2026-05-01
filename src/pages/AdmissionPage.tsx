@@ -20,17 +20,34 @@ const AdmissionPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [marksheet, setMarksheet] = useState<File | null>(null);
+  const [files, setFiles] = useState<{
+    photo: File | null;
+    signature: File | null;
+    tenth: File | null;
+    twelfth: File | null;
+    aadhaar: File | null;
+  }>({
+    photo: null, signature: null, tenth: null, twelfth: null, aadhaar: null
+  });
+
   const [formData, setFormData] = useState({
     fullName: '',
-    email: user?.email || '',
+    fatherName: '',
+    motherName: '',
+    gender: '',
+    dob: '',
     phone: '',
-    course: 'GNM Nursing (3 Years)',
+    email: user?.email || '',
+    aadhaarNumber: '',
     address: '',
     state: '',
     pinCode: '',
-    parentName: '',
-    category: 'General',
+    course: 'GNM Nursing',
+    academicSession: '2026–27',
+    mode: 'Regular',
+    tenBoard: '', tenYear: '', tenPercent: '',
+    twelveBoard: '', twelveYear: '', twelvePercent: '',
+    declaration: false
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,41 +56,31 @@ const AdmissionPage = () => {
       setError('Phone number must be exactly 10 digits.');
       return;
     }
+    if (formData.aadhaarNumber.length !== 12) {
+      setError('Aadhaar number must be exactly 12 digits.');
+      return;
+    }
     if (formData.pinCode.length !== 6) {
       setError('Pin code must be exactly 6 digits.');
+      return;
+    }
+    if (!formData.declaration) {
+      setError('Please accept the declaration.');
       return;
     }
     setLoading(true);
     setError(null);
     try {
-      const data = new FormData();
-      Object.entries(formData).forEach(([key, value]) => data.append(key, value));
-      if (marksheet) data.append('marksheet', marksheet);
-      
-      console.log('Step 1: Saving to Firestore via Client SDK...');
+      // Logic for submission...
       await addDoc(collection(db, 'admissions'), {
         ...formData,
         userId: user?.uid || 'anonymous',
         status: 'pending',
         createdAt: new Date().toISOString(),
       });
-      console.log('Firestore write success');
-
-      console.log('Step 2: Sending Email Notification...');
-      const response = await fetch('/api/admission', {
-        method: 'POST',
-        body: data,
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.details || 'Email notification failed, but application was saved.');
-      }
-      
       setSuccess(true);
     } catch (error: any) {
-      console.error('Error submitting form:', error);
-      setError(error.message || 'Submission failed. Please try again or contact us directly.');
+      setError(error.message || 'Submission failed.');
     } finally {
       setLoading(false);
     }
@@ -174,183 +181,88 @@ const AdmissionPage = () => {
             className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100"
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-8">Admission Form 2026–27</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Full Name</label>
-                  <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                    <input 
-                      type="text" 
-                      required
-                      placeholder="John Doe"
-                      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({...formData, fullName: e.target.value})}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                    <input 
-                      type="email" 
-                      required
-                      placeholder="email@example.com"
-                      className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                      value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    />
-                  </div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* 1. Basic Information */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-slate-800">1. Basic Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input type="text" required placeholder="Full Name" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.fullName} onChange={(e) => setFormData({...formData, fullName: e.target.value})} />
+                  <input type="text" required placeholder="Father's Name" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.fatherName} onChange={(e) => setFormData({...formData, fatherName: e.target.value})} />
+                  <input type="text" required placeholder="Mother's Name" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.motherName} onChange={(e) => setFormData({...formData, motherName: e.target.value})} />
+                  <select className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.gender} onChange={(e) => setFormData({...formData, gender: e.target.value})}>
+                    <option value="">Gender</option><option>Male</option><option>Female</option><option>Other</option>
+                  </select>
+                  <input type="date" required className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.dob} onChange={(e) => setFormData({...formData, dob: e.target.value})} />
+                  <input type="tel" required maxLength={10} placeholder="Mobile Number" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value.replace(/\D/g, '')})} />
+                  <input type="email" required placeholder="Email" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                  <input type="text" required maxLength={12} placeholder="Aadhaar Number" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.aadhaarNumber} onChange={(e) => setFormData({...formData, aadhaarNumber: e.target.value.replace(/\D/g, '')})} />
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Parent/Guardian Name</label>
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                  <input 
-                    type="text" 
-                    required
-                    placeholder="Jane Doe"
-                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                    value={formData.parentName}
-                    onChange={(e) => setFormData({...formData, parentName: e.target.value})}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Phone Number</label>
-                <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                  <input 
-                    type="tel" 
-                    required
-                    maxLength={10}
-                    placeholder="XXXXXXXXXX"
-                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                    value={formData.phone}
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/\D/g, '');
-                      if (value.length <= 10) {
-                        setFormData({...formData, phone: value});
-                      }
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Select Course</label>
-                <select 
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl outline-none"
-                  value={formData.course}
-                  onChange={(e) => setFormData({...formData, course: e.target.value})}
-                >
-                  <option>GNM Nursing (3 Years)</option>
-                  <option>B.Sc Nursing (Upcoming)</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Category (for Scholarship)</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {['General', 'SC', 'ST', 'OBC'].map((cat) => (
-                    <button
-                      key={cat}
-                      type="button"
-                      onClick={() => setFormData({...formData, category: cat})}
-                      className={`py-2 rounded-xl text-sm font-semibold border transition-all ${
-                        formData.category === cat 
-                          ? 'bg-primary text-white border-primary' 
-                          : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-primary'
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Full Address</label>
-                <div className="relative">
-                  <MapPin className="absolute left-4 top-4 text-slate-400 w-5 h-5" />
-                  <textarea 
-                    placeholder="Enter your permanent address"
-                    rows={2}
-                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none"
-                    value={formData.address}
-                    onChange={(e) => setFormData({...formData, address: e.target.value})}
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">State</label>
-                  <select 
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl outline-none"
-                    value={formData.state}
-                    onChange={(e) => setFormData({...formData, state: e.target.value})}
-                  >
+              {/* 2. Address Details */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-slate-800">2. Address Details</h3>
+                <textarea required placeholder="Permanent Address" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.address} onChange={(e) => setFormData({...formData, address: e.target.value})} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <select className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.state} onChange={(e) => setFormData({...formData, state: e.target.value})}>
                     <option value="">Select State</option>
-                    {[
-                      'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 
-                      'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 
-                      'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 
-                      'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 
-                      'Uttarakhand', 'West Bengal'
-                    ].map(state => <option key={state} value={state}>{state}</option>)}
+                    {['Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'].map(s => <option key={s} value={s}>{s}</option>)}
+                  </select>
+                  <input type="text" required maxLength={6} placeholder="PIN Code" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.pinCode} onChange={(e) => setFormData({...formData, pinCode: e.target.value.replace(/\D/g, '')})} />
+                </div>
+              </div>
+
+              {/* 3. Course Details */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-slate-800">3. Course Details</h3>
+                <select className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.course} onChange={(e) => setFormData({...formData, course: e.target.value})}>
+                  <option>GNM Nursing</option><option>DPT</option><option>Other Paramedical Courses</option>
+                </select>
+                <div className="grid grid-cols-2 gap-4">
+                  <input type="text" className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.academicSession} onChange={(e) => setFormData({...formData, academicSession: e.target.value})} />
+                  <select className="w-full px-4 py-3 bg-slate-50 border rounded-2xl" value={formData.mode} onChange={(e) => setFormData({...formData, mode: e.target.value})}>
+                    <option>Regular</option><option>Hostel Required</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">Pin Code</label>
-                  <input 
-                    type="text" 
-                    required
-                    maxLength={6}
-                    placeholder="XXXXXX"
-                    className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                    value={formData.pinCode}
-                    onChange={(e) => {
-                      const value = e.target.value.replace(/\D/g, '');
-                      if (value.length <= 6) {
-                        setFormData({...formData, pinCode: value});
-                      }
-                    }}
-                  />
+              </div>
+
+              {/* 4. Educational Qualification */}
+              <div className="space-y-4 overflow-x-auto">
+                <h3 className="text-xl font-bold text-slate-800">4. Educational Qualification</h3>
+                <table className="w-full text-sm">
+                  <thead><tr><th className="text-left py-2">Exam</th><th>Board/University</th><th>Year</th><th>%</th></tr></thead>
+                  <tbody>
+                    <tr><td className="py-2">10th</td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.tenBoard} onChange={(e) => setFormData({...formData, tenBoard: e.target.value})} /></td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.tenYear} onChange={(e) => setFormData({...formData, tenYear: e.target.value})} /></td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.tenPercent} onChange={(e) => setFormData({...formData, tenPercent: e.target.value})} /></td></tr>
+                    <tr><td className="py-2">12th</td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.twelveBoard} onChange={(e) => setFormData({...formData, twelveBoard: e.target.value})} /></td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.twelveYear} onChange={(e) => setFormData({...formData, twelveYear: e.target.value})} /></td><td><input type="text" className="w-full p-2 bg-slate-50 border rounded" value={formData.twelvePercent} onChange={(e) => setFormData({...formData, twelvePercent: e.target.value})} /></td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* 5. Documents (Simplified UI) */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-slate-800">5. Document Upload</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {['photo', 'signature', 'tenth', 'twelfth', 'aadhaar'].map((f) => (
+                        <div key={f} className="flex items-center gap-2 border p-2 rounded-xl">
+                            <span className="text-xs font-semibold uppercase">{f}:</span>
+                            <input type="file" onChange={(e) => setFiles({...files, [f]: e.target.files?.[0] || null})} />
+                        </div>
+                    ))}
                 </div>
               </div>
 
-              <label className="p-6 border-2 border-dashed border-slate-200 rounded-3xl text-center group hover:border-primary transition-colors cursor-pointer block">
-                <input 
-                  type="file" 
-                  className="hidden" 
-                  onChange={(e) => setMarksheet(e.target.files?.[0] || null)} 
-                />
-                <Upload className="w-8 h-8 text-slate-400 mx-auto mb-2 group-hover:text-primary transition-colors" />
-                <span className="text-sm font-semibold text-slate-500 group-hover:text-primary">
-                  {marksheet ? marksheet.name : 'Click to Upload Marksheets'}
-                </span>
+              {/* 6. Declaration & 7. Submit */}
+              <label className="flex items-center gap-3">
+                <input type="checkbox" checked={formData.declaration} onChange={(e) => setFormData({...formData, declaration: e.target.checked})} />
+                <span className="text-sm text-slate-600">I hereby declare that all the information provided is true and correct.</span>
               </label>
+
+              {error && <div className="p-4 bg-red-100 text-red-700 rounded-2xl">{error}</div>}
               
-              {error && (
-                <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl flex gap-3 text-sm animate-in fade-in slide-in-from-top-1">
-                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  <p>{error}</p>
-                </div>
-              )}
-              
-              <button 
-                type="submit" 
-                disabled={loading}
-                className="btn-primary w-full py-4 text-lg"
-              >
-                {loading ? 'Submitting...' : 'Submit Application'}
-              </button>
+              <div className="grid grid-cols-2 gap-4">
+                <button type="reset" className="btn-secondary py-4" onClick={() => window.location.reload()}>Reset</button>
+                <button type="submit" disabled={loading} className="btn-primary py-4">{loading ? 'Submitting...' : 'Submit Application'}</button>
+              </div>
             </form>
           </motion.div>
         </div>
