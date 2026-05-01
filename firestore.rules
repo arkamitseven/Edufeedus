@@ -1,0 +1,67 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() { return request.auth != null; }
+    function getUserData() { return get(/databases/$(database)/documents/users/$(request.auth.uid)).data; }
+    function isAdmin() { return isSignedIn() && getUserData().role == 'admin'; }
+    function isStaff() { return isSignedIn() && (getUserData().role == 'staff' || getUserData().role == 'admin'); }
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isSignedIn() && (isOwner(userId) || isAdmin());
+    }
+
+    match /test/connection {
+      allow read: if true;
+    }
+    
+    match /admissions/{admissionId} {
+      allow read: if isStaff() || (isSignedIn() && resource.data.userId == request.auth.uid);
+      allow create: if true;
+      allow update: if isStaff();
+    }
+    
+    match /materials/{materialId} {
+      allow read: if isSignedIn();
+      allow write: if isStaff();
+    }
+    
+    match /mockTests/{testId} {
+      allow read: if isSignedIn();
+      allow write: if isStaff();
+    }
+    
+    match /testResults/{resultId} {
+      allow read: if isSignedIn() && (isOwner(resource.data.studentId) || isStaff());
+      allow create: if isSignedIn();
+      allow write: if isStaff();
+    }
+    
+    match /announcements/{announcementId} {
+      allow read: if isSignedIn();
+      allow write: if isStaff();
+    }
+    
+    match /attendance/{attendanceId} {
+      allow read: if isStaff();
+      allow write: if isStaff();
+    }
+    
+    match /teacherResults/{resultId} {
+      allow read: if isSignedIn() && (isOwner(resource.data.studentId) || isStaff());
+      allow write: if isStaff();
+    }
+    
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow write: if isStaff();
+    }
+  }
+}
