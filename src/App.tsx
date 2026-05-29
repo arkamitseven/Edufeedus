@@ -222,6 +222,10 @@ export default function App() {
                   +91 8414001064
                 </li>
                 <li className="flex items-center gap-3">
+                  <span className="text-primary text-base">📞</span>
+                  +91 8787667006
+                </li>
+                <li className="flex items-center gap-3">
                   <span className="text-primary text-base">✉️</span>
                   contact@edufeedus.com
                 </li>

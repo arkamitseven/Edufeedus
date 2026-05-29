@@ -10,7 +10,8 @@ import {
   ScrollText,
   HeartPulse,
   GraduationCap,
-  Stethoscope
+  Stethoscope,
+  Phone
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
@@ -67,7 +68,7 @@ const HomePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { label: 'Seats Available', value: '60', icon: GraduationCap },
+              { label: 'Seats Available', value: '80', icon: GraduationCap },
               { label: 'Books in Library', value: '700+', icon: BookOpen },
               { label: 'Multiple Labs', value: '6+', icon: Building2 },
               { label: 'Staff Members', value: '25+', icon: Users },
@@ -145,7 +146,7 @@ const HomePage = () => {
                 <ul className="space-y-4 mb-8 text-left">
                   <li className="flex items-center justify-between">
                     <span className="text-slate-500 text-sm">Available Seats</span>
-                    <span className="font-bold text-slate-900">60</span>
+                    <span className="font-bold text-slate-900">80</span>
                   </li>
                   <li className="flex items-center justify-between">
                     <span className="text-slate-500 text-sm">Duration</span>
@@ -190,6 +191,30 @@ const HomePage = () => {
 
       {/* CTA Banner */}
       <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto mb-16 p-8 bg-blue-50 rounded-[3rem] border border-blue-200">
+          <div className="flex items-center gap-6 mb-6">
+            <div className="p-4 bg-blue-100 rounded-3xl text-blue-700 flex-shrink-0">
+              <ScrollText className="w-8 h-8" />
+            </div>
+            <div>
+              <h4 className="text-xl font-bold text-blue-900 mb-1">Financial & Admission Support</h4>
+              <p className="text-blue-700">Access quality education with government-backed financial support through the PM Vidyalaxmi Study Loan scheme or contact us for guidance.</p>
+            </div>
+          </div>
+          
+          <div className="border-t border-blue-200 pt-6 mt-6">
+            <h5 className="font-bold text-slate-900 mb-1">Amit Das</h5>
+            <p className="text-sm text-slate-600 mb-3">Managing Director, Edufeedus Group of Institutes</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-slate-700">
+              <a href="tel:+918787667006" className="flex items-center gap-2 font-bold text-primary hover:underline">
+                <Phone className="w-5 h-5" /> +91 8787667006
+              </a>
+              <a href="mailto:ask@arkamitseven.in" className="flex items-center gap-2 font-bold text-primary hover:underline">
+                <ArrowRight className="w-5 h-5" /> ask@arkamitseven.in
+              </a>
+            </div>
+          </div>
+        </div>
         <div className="max-w-5xl mx-auto bg-slate-900 rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-medical-blue/20 blur-[120px]" />

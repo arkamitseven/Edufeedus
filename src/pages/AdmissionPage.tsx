@@ -9,7 +9,8 @@ import {
   Upload, 
   CheckCircle,
   AlertCircle,
-  Download
+  Download,
+  ScrollText
 } from 'lucide-react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -181,6 +182,32 @@ const AdmissionPage = () => {
             className="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100"
           >
             <h2 className="text-2xl font-bold text-slate-900 mb-8">Admission Form 2026–27</h2>
+            
+            <div className="mb-8 p-6 bg-blue-50 rounded-2xl border border-blue-200">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-3 bg-blue-100 rounded-xl text-blue-700 flex-shrink-0">
+                  <ScrollText className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-blue-900">Financial & Admission Support</h4>
+                  <p className="text-sm text-blue-700">Learn about the PM Vidyalaxmi Study Loan or get expert guidance.</p>
+                </div>
+              </div>
+              
+              <div className="border-t border-blue-100 pt-4 mt-4">
+                <h5 className="font-bold text-slate-900 mb-1">Amit Das</h5>
+                <p className="text-xs text-slate-600 mb-2">Managing Director, Edufeedus Group of Institutes</p>
+                <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
+                  <a href="tel:+918787667006" className="flex items-center gap-1 font-bold text-primary hover:underline">
+                    <Phone className="w-4 h-4" /> 8787667006
+                  </a>
+                  <a href="mailto:ask@arkamitseven.in" className="flex items-center gap-1 font-bold text-primary hover:underline">
+                    <Download className="w-4 h-4" /> ask@arkamitseven.in
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* 1. Basic Information */}
               <div className="space-y-4">

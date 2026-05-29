@@ -11,7 +11,8 @@ import {
   ShieldCheck,
   ChevronRight,
   ArrowUpRight,
-  Phone
+  Phone,
+  ScrollText
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ const CoursesPage = () => {
                   <div className="w-10 h-10 bg-white rounded-full shadow-sm flex items-center justify-center">
                     <Users className="text-primary w-5 h-5" />
                   </div>
-                  <span className="font-bold text-slate-700">60 Seats/Year</span>
+                  <span className="font-bold text-slate-700">80 Seats/Year</span>
                 </div>
               </div>
             </motion.div>
@@ -123,7 +124,7 @@ const CoursesPage = () => {
                   {[
                     { label: 'Level', val: 'Diploma' },
                     { label: 'Duration', val: '3 Years' },
-                    { label: 'Intake', val: '60 Students' },
+                    { label: 'Intake', val: '80 Students' },
                     { label: 'Affiliation', val: 'AGMC & GBP Hospital' },
                     { label: 'Loan Support', val: '100% Assist' },
                   ].map((fact, i) => (
@@ -134,6 +135,31 @@ const CoursesPage = () => {
                   ))}
                 </ul>
                 <Link to="/admission" className="btn-primary w-full mt-8">Apply This Course</Link>
+                
+                <div className="mt-8 p-6 bg-blue-50 rounded-2xl border border-blue-200">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-blue-100 rounded-xl text-blue-700 flex-shrink-0">
+                      <ScrollText className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-blue-900">Financial & Admission Support</h4>
+                      <p className="text-sm text-blue-700">Learn about the PM Vidyalaxmi Study Loan or get expert guidance on your application.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t border-blue-100 pt-4 mt-4">
+                    <h5 className="font-bold text-slate-900 mb-1">Amit Das</h5>
+                    <p className="text-xs text-slate-600 mb-2">Managing Director, Edufeedus Group of Institutes</p>
+                    <div className="grid grid-cols-2 gap-2 text-sm text-slate-700">
+                      <a href="tel:+918787667006" className="flex items-center gap-1 font-bold text-primary hover:underline">
+                        <Phone className="w-4 h-4" /> 8787667006
+                      </a>
+                      <a href="mailto:ask@arkamitseven.in" className="flex items-center gap-1 font-bold text-primary hover:underline">
+                        <ArrowUpRight className="w-4 h-4" /> ask@arkamitseven.in
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem]">
