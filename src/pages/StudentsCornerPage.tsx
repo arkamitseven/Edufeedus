@@ -197,38 +197,40 @@ export default function StudentsCornerPage() {
   return (
     <div className="bg-slate-50 min-h-screen py-12">
       {/* Hero Banner */}
-      <section className="relative overflow-hidden bg-slate-900 rounded-[3rem] max-w-7xl mx-auto mb-16 mx-4 sm:mx-6 lg:mx-8 px-8 py-20 lg:py-24 text-center text-white shadow-2xl">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-500/10 blur-[120px]" />
-        
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <span className="bg-primary/20 text-primary font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-primary/30 inline-block mb-6">
-            Edufeedus Hub
-          </span>
-          <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">
-            Students' <span className="text-primary">Corner</span>
-          </h1>
-          <p className="text-slate-400 text-lg leading-relaxed mb-8">
-            Access schedules, official academic downloads, compliance guidelines, 
-            and submit support tickets directly to the administration.
-          </p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+        <section className="relative overflow-hidden bg-slate-900 rounded-[3rem] px-8 py-20 lg:py-24 text-center text-white shadow-2xl">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-teal-500/10 blur-[120px]" />
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-500/10 blur-[120px]" />
+          
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <span className="bg-primary/20 text-primary font-bold text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-primary/30 inline-block mb-6">
+              Edufeedus Hub
+            </span>
+            <h1 className="text-4xl lg:text-6xl font-black tracking-tight mb-6">
+              Students' <span className="text-primary">Corner</span>
+            </h1>
+            <p className="text-slate-400 text-lg leading-relaxed mb-8">
+              Access schedules, official academic downloads, compliance guidelines, 
+              and submit support tickets directly to the administration.
+            </p>
 
-          <div className="flex flex-wrap justify-center gap-4">
-            {user ? (
-              <Link to="/portal" className="btn-primary flex items-center gap-2 py-3 px-8 text-sm">
-                Go to Portal <ArrowRight className="w-4 h-4" />
-              </Link>
-            ) : (
-              <button onClick={signIn} className="btn-primary flex items-center gap-2 py-3 px-8 text-sm">
-                Login to Student Portal <ArrowRight className="w-4 h-4" />
-              </button>
-            )}
-            <a href="#support-section" className="bg-white/10 hover:bg-white/15 text-white font-semibold py-3 px-8 rounded-2xl border border-white/10 transition-all text-sm flex items-center gap-2">
-              Submit Grievance
-            </a>
+            <div className="flex flex-wrap justify-center gap-4">
+              {user ? (
+                <Link to="/portal" className="btn-primary flex items-center gap-2 py-3 px-8 text-sm">
+                  Go to Portal <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : (
+                <button onClick={signIn} className="btn-primary flex items-center gap-2 py-3 px-8 text-sm">
+                  Login to Student Portal <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+              <a href="#support-section" className="bg-white/10 hover:bg-white/15 text-white font-semibold py-3 px-8 rounded-2xl border border-white/10 transition-all text-sm flex items-center gap-2">
+                Submit Grievance
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Portal Notice Box */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
