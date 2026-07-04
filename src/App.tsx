@@ -32,6 +32,7 @@ const FacilitiesPage = React.lazy(() => import('./pages/FacilitiesPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const GalleryPage = React.lazy(() => import('./pages/GalleryPage'));
 const PortalPage = React.lazy(() => import('./pages/PortalPage'));
+const StudentsCornerPage = React.lazy(() => import('./pages/StudentsCornerPage'));
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -46,6 +47,7 @@ const Navbar = () => {
     { name: 'Facilities', path: '/facilities', icon: Settings },
     { name: 'Gallery', path: '/gallery', icon: ImageIcon },
     { name: 'Admission', path: '/admission', icon: FileText },
+    { name: 'Students Corner', path: '/students-corner', icon: GraduationCap },
     { name: 'Contact', path: '/contact', icon: Phone },
   ];
 
@@ -176,6 +178,7 @@ export default function App() {
             <Route path="/facilities" element={<FacilitiesPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/students-corner" element={<StudentsCornerPage />} />
             <Route path="/portal/*" element={<PortalPage />} />
           </Routes>
         </React.Suspense>
@@ -207,6 +210,7 @@ export default function App() {
                 <li><Link to="/facilities" className="hover:text-primary transition-colors">Infrastructure</Link></li>
                 <li><Link to="/gallery" className="hover:text-primary transition-colors">Gallery</Link></li>
                 <li><Link to="/admission" className="hover:text-primary transition-colors">Admissions</Link></li>
+                <li><Link to="/students-corner" className="hover:text-primary transition-colors">Students' Corner</Link></li>
               </ul>
             </div>
 
