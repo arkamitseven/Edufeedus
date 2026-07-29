@@ -22,6 +22,7 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from './context/AuthContext';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { EdufeedusLogo } from './components/EdufeedusLogo';
 
 // Lazy load pages for better performance
 const HomePage = React.lazy(() => import('./pages/HomePage'));
@@ -56,13 +57,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-teal-500/20">
-              <Stethoscope className="text-white w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 block leading-tight">Edufeedus</span>
-              <span className="text-[10px] font-medium text-primary uppercase tracking-widest block">GROUP OF INSTITUTES</span>
-            </div>
+            <EdufeedusLogo showText size={42} />
           </Link>
 
           {/* Desktop Nav */}
@@ -188,13 +183,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                  <Stethoscope className="text-white w-6 h-6" />
-                </div>
-                <div>
-                  <span className="text-xl font-bold tracking-tight text-white block leading-tight">Edufeedus</span>
-                  <span className="text-[10px] font-medium text-primary uppercase tracking-widest block">GROUP OF INSTITUTES</span>
-                </div>
+                <EdufeedusLogo showText lightText size={42} />
               </div>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
                 Shaping the future of healthcare Professionals in India. Edufeedus Group of Institutes provides 

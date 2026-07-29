@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <!-- Globe (Green Wireframe) -->
+  <g transform="translate(250, 185)">
+    <!-- Main Globe Outline -->
+    <circle cx="0" cy="0" r="82" fill="none" stroke="#0e8a43" stroke-width="7.5" />
+    <!-- Equator -->
+    <line x1="-82" y1="0" x2="82" y2="0" stroke="#0e8a43" stroke-width="5.5" />
+    <!-- Latitude Lines -->
+    <ellipse cx="0" cy="0" rx="82" ry="38" fill="none" stroke="#0e8a43" stroke-width="5.5" />
+    <ellipse cx="0" cy="0" rx="82" ry="68" fill="none" stroke="#0e8a43" stroke-width="5" />
+    <!-- Prime Meridian -->
+    <line x1="0" y1="-82" x2="0" y2="82" stroke="#0e8a43" stroke-width="5.5" />
+    <!-- Longitude Lines -->
+    <ellipse cx="0" cy="0" rx="38" ry="82" fill="none" stroke="#0e8a43" stroke-width="5.5" />
+  </g>
+
+  <!-- Left Hand (Blue Cupped Palm) -->
+  <g fill="#0066b2">
+    <!-- Palm & Wrist Body -->
+    <path d="
+      M 238 395
+      C 238 395 210 330 180 300
+      C 152 272 138 238 138 208
+      C 138 202 146 198 150 204
+      C 158 218 168 238 178 252
+      C 165 228 155 204 155 196
+      C 155 190 163 187 168 193
+      C 178 210 192 238 200 252
+      C 188 228 178 200 178 192
+      C 178 186 186 183 190 189
+      C 204 210 218 240 226 258
+      C 218 238 210 212 210 204
+      C 210 198 218 196 222 202
+      C 240 228 248 260 248 290
+      C 248 335 240 370 238 395 Z
+    " />
+  </g>
+
+  <!-- Right Hand (Pink / Magenta Cupped Palm) -->
+  <g fill="#e30052">
+    <!-- Palm & Wrist Body -->
+    <path d="
+      M 262 395
+      C 262 395 290 330 320 300
+      C 348 272 362 238 362 208
+      C 362 202 354 198 350 204
+      C 342 218 332 238 322 252
+      C 335 228 345 204 345 196
+      C 345 190 337 187 332 193
+      C 322 210 308 238 300 252
+      C 312 228 322 200 322 192
+      C 322 186 314 183 310 189
+      C 296 210 282 240 274 258
+      C 282 238 290 212 290 204
+      C 290 198 282 196 278 202
+      C 260 228 252 260 252 290
+      C 252 335 260 370 262 395 Z
+    " />
+  </g>
+</svg>
