@@ -57,7 +57,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <Link to="/" className="flex items-center gap-2">
-            <EdufeedusLogo showText size={42} />
+            <EdufeedusLogo showText size={54} />
           </Link>
 
           {/* Desktop Nav */}
@@ -183,7 +183,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <EdufeedusLogo showText lightText size={42} />
+                <EdufeedusLogo showText lightText size={54} />
               </div>
               <p className="text-sm text-slate-400 leading-relaxed mb-6">
                 Shaping the future of healthcare Professionals in India. Edufeedus Group of Institutes provides 
