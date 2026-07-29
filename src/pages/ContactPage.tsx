@@ -10,7 +10,10 @@ import {
   Facebook,
   Instagram,
   Twitter,
-  Youtube
+  Youtube,
+  Building2,
+  Navigation,
+  ExternalLink
 } from 'lucide-react';
 
 const ContactPage = () => {
@@ -33,8 +36,12 @@ const ContactPage = () => {
 
             <div className="space-y-10">
               {[
-                { icon: MapPin, title: 'Our Address', content: 'Nandannagar, Marak Para, Agartala, West Tripura – 799006' },
-                { icon: Phone, title: 'Call Us', content: '+91 8414001064' },
+                { 
+                  icon: MapPin, 
+                  title: 'Edufeedus Group of Institutes Location', 
+                  content: 'Nandannagar, Marak Para, Agartala, West Tripura – 799006' 
+                },
+                { icon: Phone, title: 'Call Us', content: '+91 8414001064 / +91 8787667006' },
                 { icon: Mail, title: 'Email Us', content: 'contact@edufeedus.com' },
                 { icon: Clock, title: 'Office Hours', content: 'Mon - Sat: 10:00 AM - 6:00 PM' }
               ].map((item, i) => (
@@ -127,6 +134,81 @@ const ContactPage = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Dedicated Location & Interactive Map Section */}
+        <section className="mt-24 pt-16 border-t border-slate-100">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-primary font-bold text-xs uppercase tracking-widest px-4 py-1.5 bg-teal-50 rounded-full border border-teal-100 inline-block mb-3">
+              Campus Location & Navigation
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">
+              Edufeedus Group of Institutes Location
+            </h2>
+            <p className="text-slate-600 mt-3 text-sm lg:text-base">
+              Located conveniently in Nandannagar, Agartala with easy transport connectivity to major healthcare centers and transport hubs.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            {/* Location Info Box */}
+            <div className="bg-slate-900 text-white p-8 rounded-[2.5rem] flex flex-col justify-between shadow-xl">
+              <div>
+                <div className="w-12 h-12 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mb-6">
+                  <Building2 className="w-6 h-6" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">Campus Location</h3>
+                
+                <div className="space-y-5 text-sm text-slate-300">
+                  <div className="flex gap-3 items-start">
+                    <MapPin className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block mb-0.5">Institute Address:</strong>
+                      Nandannagar, Marak Para, Agartala, West Tripura – 799006
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <Navigation className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block mb-0.5">Landmark:</strong>
+                      Near AGMC & GBP Government Hospital, Agartala
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-start">
+                    <Phone className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <strong className="text-white block mb-0.5">Phone Contacts:</strong>
+                      +91 8414001064 | +91 8787667006
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=Edufeedus+Group+of+Institutes+Nandannagar+Agartala+Tripura" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="btn-primary w-full py-3 text-sm flex items-center justify-center gap-2"
+                >
+                  <ExternalLink className="w-4 h-4" /> Open in Google Maps
+                </a>
+              </div>
+            </div>
+
+            {/* Embedded Interactive Google Map */}
+            <div className="lg:col-span-2 rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-md min-h-[380px] bg-slate-100 relative">
+              <iframe 
+                title="Edufeedus Group of Institutes Campus Map"
+                src="https://maps.google.com/maps?q=Nandannagar,+Marak+Para,+Agartala,+West+Tripura+-+799006&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                className="w-full h-full min-h-[380px] border-0"
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

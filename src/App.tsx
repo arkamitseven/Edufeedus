@@ -219,7 +219,14 @@ export default function App() {
               <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
                   <span className="text-primary mt-1 text-base">📍</span>
-                  Nandannagar, Marak Para, Agartala, West Tripura – 799006
+                  <a 
+                    href="https://www.google.com/maps/search/?api=1&query=Edufeedus+Group+of+Institutes+Nandannagar+Agartala+Tripura" 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="hover:text-primary transition-colors"
+                  >
+                    Nandannagar, Marak Para, Agartala, West Tripura – 799006
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="text-primary text-base">📞</span>

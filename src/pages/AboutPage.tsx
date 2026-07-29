@@ -10,7 +10,8 @@ import {
   Bus,
   Stethoscope,
   HeartPulse,
-  Home
+  Home,
+  UserCheck
 } from 'lucide-react';
 
 const AboutPage = () => {
@@ -63,6 +64,97 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* About the Management */}
+      <section className="py-20 bg-slate-50 border-y border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center">
+            <span className="text-primary font-bold text-xs uppercase tracking-widest px-4 py-1.5 bg-teal-50 rounded-full border border-teal-100 inline-block mb-3">
+              Leadership & Guidance
+            </span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900">About the Management</h2>
+          </div>
+
+          {/* Chairman */}
+          <div className="bg-white rounded-[3rem] p-8 lg:p-12 border border-slate-200/80 shadow-sm max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+              <div className="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-slate-50 rounded-3xl border border-slate-100 flex-shrink-0">
+                <div className="w-36 h-36 rounded-2xl overflow-hidden mb-4 border-2 border-primary/30 shadow-md flex-shrink-0 bg-slate-100 relative group">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/1mGDbnvhHgAQOUg885h6sZBsHqN3eTH_-" 
+                    onError={(e) => {
+                      // Fallback to alternative Google Drive direct thumbnail format if needed
+                      (e.currentTarget as HTMLImageElement).src = "https://drive.google.com/thumbnail?id=1mGDbnvhHgAQOUg885h6sZBsHqN3eTH_-&sz=w800";
+                    }}
+                    alt="Mr. Debasish Datta - Chairman" 
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">Mr. Debasish Datta</h3>
+                <p className="text-primary font-bold text-sm mt-1">Chairman</p>
+                <p className="text-slate-500 text-xs font-semibold mt-1 uppercase tracking-wider">Edufeedus Group of Institutes</p>
+              </div>
+
+              <div className="w-full md:w-2/3 space-y-4 text-slate-600 leading-relaxed text-base">
+                <p>
+                  Mr. Debasish Datta serves as the Chairman of Edufeedus Group of Institutes, providing visionary leadership and strategic direction in the institution's pursuit of academic excellence and social responsibility. Guided by the conviction that education has the power to transform lives and strengthen communities, he has been instrumental in fostering an environment that promotes quality learning, integrity, and innovation.
+                </p>
+                <p>
+                  As Chairman, Mr. Datta is committed to building an institution that not only delivers high standards of professional education but also nurtures ethical values, discipline, and a spirit of service. His leadership is driven by a long-term vision of developing competent healthcare professionals who are prepared to meet the evolving needs of society with knowledge, compassion, and professionalism.
+                </p>
+                <p>
+                  Under his guidance, Edufeedus Group of Institutes has embraced a culture of continuous improvement, student-centric learning, and institutional excellence. He firmly believes that an educational institution should serve as a platform for personal growth, professional development, and lifelong learning, empowering students to become responsible citizens and future leaders.
+                </p>
+                <p>
+                  With a steadfast commitment to excellence, transparency, and sustainable growth, Mr. Datta continues to inspire the institution's journey toward becoming a distinguished centre of healthcare education. His dedication to nurturing talent, strengthening academic standards, and creating meaningful opportunities for students remains at the heart of Edufeedus Group of Institutes' mission and future aspirations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Managing Director */}
+          <div className="bg-white rounded-[3rem] p-8 lg:p-12 border border-slate-200/80 shadow-sm max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-start">
+              <div className="w-full md:w-1/3 flex flex-col items-center text-center p-6 bg-slate-50 rounded-3xl border border-slate-100 flex-shrink-0">
+                <div className="w-36 h-36 rounded-2xl overflow-hidden mb-4 border-2 border-primary/30 shadow-md flex-shrink-0 bg-slate-100 relative group">
+                  <img 
+                    src="https://lh3.googleusercontent.com/d/18EhrBAr_pOkztOhsZPjdySdql-4x9OOu" 
+                    onError={(e) => {
+                      // Fallback to Google Drive direct thumbnail format if needed
+                      (e.currentTarget as HTMLImageElement).src = "https://drive.google.com/thumbnail?id=18EhrBAr_pOkztOhsZPjdySdql-4x9OOu&sz=w800";
+                    }}
+                    alt="Mr. Amit Das - Managing Director" 
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900">Mr. Amit Das</h3>
+                <p className="text-primary font-bold text-sm mt-1">Managing Director</p>
+                <p className="text-slate-500 text-xs font-semibold mt-1 uppercase tracking-wider">Edufeedus Group of Institutes</p>
+              </div>
+
+              <div className="w-full md:w-2/3 space-y-4 text-slate-600 leading-relaxed text-base">
+                <p>
+                  Mr. Amit Das is the visionary Managing Director of Edufeedus Group of Institutes, dedicated to building an institution that empowers aspiring healthcare professionals through quality education, innovation, and ethical leadership. With expertise in institutional administration, strategic planning, technology, branding, and organizational development, he has played a pivotal role in establishing Edufeedus as one of the emerging centres for nursing education in Tripura.
+                </p>
+                <p>
+                  Driven by the belief that education is the foundation of a progressive society, Mr. Das has consistently focused on creating an academic ecosystem where knowledge, practical exposure, discipline, and compassion come together to prepare students for successful professional careers. His leadership philosophy emphasizes academic excellence, transparency, continuous improvement, and student-centric development.
+                </p>
+                <p>
+                  Under his guidance, Edufeedus Group of Institutes has developed modern infrastructure, strengthened clinical training partnerships, and adopted innovative approaches to teaching and learning. His vision extends beyond classroom education—he is committed to nurturing confident, competent, and socially responsible healthcare professionals who can contribute meaningfully to the nation's healthcare system.
+                </p>
+                <p>
+                  As a forward-thinking education entrepreneur, Mr. Das continues to lead the institution with a clear mission: to make quality professional education accessible, industry-relevant, and globally competitive. His long-term vision is to transform Edufeedus into a centre of excellence in healthcare education by expanding academic opportunities, embracing innovation, fostering research, and creating an environment that inspires lifelong learning.
+                </p>
+                <p>
+                  Through his unwavering commitment to excellence, integrity, and service, Mr. Das continues to shape the future of Edufeedus Group of Institutes and inspire the next generation of healthcare professionals to lead with knowledge, compassion, and purpose.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Infrastructure Grid */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,25 +188,47 @@ const AboutPage = () => {
       <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-900 rounded-[3rem] overflow-hidden flex flex-col lg:flex-row shadow-2xl">
           <div className="lg:w-1/2 p-12 lg:p-20 flex flex-col justify-center">
+            <span className="text-primary font-bold text-xs uppercase tracking-widest mb-3 block">Edufeedus Group of Institutes</span>
             <h2 className="text-3xl font-bold text-white mb-6">Visit Our Campus</h2>
             <div className="space-y-6">
               <div className="flex gap-4 items-start">
-                <MapPin className="text-primary w-6 h-6 flex-shrink-0" />
-                <p className="text-slate-400">
-                  Nandannagar, Marak Para, Agartala, West Tripura – 799006
-                </p>
+                <MapPin className="text-primary w-6 h-6 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-white font-bold mb-1">Campus Address</h3>
+                  <p className="text-slate-400 leading-relaxed">
+                    Nandannagar, Marak Para, Agartala, West Tripura – 799006
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <Building2 className="text-primary w-6 h-6 flex-shrink-0 mt-1" />
+                <div>
+                  <h3 className="text-white font-bold mb-1">Nearby Landmark</h3>
+                  <p className="text-slate-400 leading-relaxed">
+                    Close to AGMC & GBP Government Hospital, Agartala
+                  </p>
+                </div>
               </div>
             </div>
             <div className="mt-10">
-              <button className="btn-primary">Get Directions</button>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Edufeedus+Group+of+Institutes+Nandannagar+Agartala+Tripura" 
+                target="_blank" 
+                rel="noreferrer"
+                className="btn-primary inline-flex items-center gap-2"
+              >
+                <MapPin className="w-5 h-5" /> Get Directions on Google Maps
+              </a>
             </div>
           </div>
-          <div className="lg:w-1/2 h-80 lg:h-auto bg-slate-800">
-            {/* Map Placeholder */}
-            <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-4">
-              <MapPin className="w-12 h-12 opacity-20" />
-              <p className="text-xs font-bold uppercase tracking-widest opacity-30">Google Map Embed Placeholder</p>
-            </div>
+          <div className="lg:w-1/2 min-h-[320px] lg:min-h-[420px] bg-slate-800 relative">
+            <iframe 
+              title="Edufeedus Group of Institutes Location Map"
+              src="https://maps.google.com/maps?q=Nandannagar,+Marak+Para,+Agartala,+West+Tripura+-+799006&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full min-h-[320px] lg:min-h-[420px] border-0"
+              loading="lazy"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
